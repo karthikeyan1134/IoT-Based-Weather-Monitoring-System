@@ -40,7 +40,7 @@ This project is a **Global Weather Forecasting System and Climate Analysis Platf
 <ol>
   <li><strong>Clone the Repository:</strong>
     <pre><code>git clone https://github.com/karthikeyan1134/IoT-Based-Weather-Monitoring-System.git
-cd GlobalWeatherForecasting</code></pre>
+cd IoT-Based-Weather-Monitoring-System</code></pre>
   </li>
   <li><strong>Configure the Project:</strong>
     <ul>
@@ -76,7 +76,7 @@ cd GlobalWeatherForecasting</code></pre>
 <ul>
   <li><strong>geolocation.h:</strong> Handles the Wi-Fi connection and geolocation data fetching using Google Geolocation API.</li>
   <li><strong>nearest_city.h<strong> This header file defines structures and functions for geographic computations, including finding the nearest city to a given location using the Haversine formula and CSV data.</li>
-  <li><strong>main.ino:</strong> The main file that integrates all components, collects sensor data, and manages data uploads to the database and ThingSpeak.</li>
+  <li><strong>main.c++:</strong> The main file that integrates all components, collects sensor data, and manages data uploads to the database and ThingSpeak.</li>
   <li><strong>config.h:</strong> Contains configuration parameters like API keys, database credentials, etc. (Optional, depending on your setup).</li>
 </ul>
 
