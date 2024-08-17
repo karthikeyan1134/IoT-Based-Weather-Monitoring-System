@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a **Global Weather Forecasting System and Climate Analysis Platform** designed to collect, process, and analyze weather data in real time. It integrates sensor data with geolocation information and uploads the data to an AWS RDS database and ThingSpeak for further processing and visualization. This platform is part of a larger system aimed at forecasting weather patterns and analyzing climate trends.
+This project is a **IoT-Based-Weather-Monitoring-System** designed to collect, process, and analyze weather data in real time. It integrates sensor data with geolocation information and uploads the data to an AWS RDS database and ThingSpeak for further processing and visualization. This platform is part of a larger system aimed at forecasting weather patterns and analyzing climate trends.
 
 ## Features
 
@@ -76,6 +76,7 @@ cd IoT-Based-Weather-Monitoring-System</code></pre>
 <ul>
   <li><strong>geolocation.h:</strong> Handles the Wi-Fi connection and geolocation data fetching using Google Geolocation API.</li>
   <li><strong>nearest_city.h<strong> This header file defines structures and functions for geographic computations, including finding the nearest city to a given location using the Haversine formula and CSV data.</li>
+  <li><strong>IN.csv<strong> This file includes over 6,56,678 places with their latitudes & longitudes accross all over indian (*Reference from <a href="https://www.geonames.org/">GeoNames</a>)</li>
   <li><strong>main.c++:</strong> The main file that integrates all components, collects sensor data, and manages data uploads to the database and ThingSpeak.</li>
   <li><strong>config.h:</strong> Contains configuration parameters like API keys, database credentials, etc. (Optional, depending on your setup).</li>
 </ul>
@@ -90,6 +91,7 @@ cd IoT-Based-Weather-Monitoring-System</code></pre>
       <li><code>humidity:</code> FLOAT, humidity reading</li>
       <li><code>latitude:</code> FLOAT, latitude of the data point</li>
       <li><code>longitude:</code> FLOAT, longitude of the data point</li>
+      <li><code>nearest_place:</code> VARCHAR, nearest place of the data point</li>
       <li><code>timestamp:</code> TIMESTAMP, the time the data was recorded</li>
     </ul>
   </li>
