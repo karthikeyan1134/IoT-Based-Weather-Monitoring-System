@@ -11,6 +11,7 @@ This project is a **IoT-Based-Weather-Monitoring-System** designed to collect, p
   <li><strong>Database Integration:</strong> Stores collected data into an AWS RDS MySQL database for persistent storage and future analysis.</li>
   <li><strong>ThingSpeak Integration:</strong> Uploads real-time weather data to ThingSpeak for visualization and monitoring.</li>
   <li><strong>Geolocation Services:</strong> Utilizes Google Geolocation API to obtain accurate coordinates based on nearby Wi-Fi access points.</li>
+  <li><strong>Own GPS Sensor: </strong> This program does not require any GPS sensor. It uses geolocation and a custom header file, <strong>nearest_city.h</strong>, to replace the need for a GPS sensor.</li>
   <li><strong>Modular Design:</strong> Easily extendable and adaptable to different hardware setups and data processing needs.</li>
 </ul>
 
