@@ -9,7 +9,7 @@
 #define dht_apin 5 // Digital Pin sensor is connected to
 dht11 dhtObject;
 
-String apiKey = "90JHFYDCI4U12LZ8";  // Modify the API_KEY with Things_view write API_KEY
+String apiKey = "ThinkSpeak-API-key";  // Modify the API_KEY with Things_view write API_KEY
 SoftwareSerial ser(2, 3); // TX, RX
 
 Geolocation geo;
