@@ -1,18 +1,18 @@
 # IoT-Based Weather Monitoring System with Edge Geospatial Processing
 
-## 📌 Overview
+## Overview
 This project is a real-time **IoT Weather Monitoring System** that collects environmental data and determines its location **without a GPS module**. It uses an architecture of **IoT + Edge Computing + Cloud** to handle data efficiently.
 
 The system was awarded **1st Prize** in an IoT & Edge Computing Hackathon for its innovative GPS-free geolocation and edge-based processing design.
 
-## 🚀 Key Features
-* 🌡️ **Environmental Sensing:** Real-time temperature and humidity tracking using the DHT11 sensor.
-* 📡 **GPS-Free Geolocation:** Uses Wi-Fi triangulation via the **Google Geolocation API** to get coordinates.
-* 🧠 **Edge Processing:** Offloads heavy geospatial calculations to an edge gateway to find the nearest city name using the **Haversine Algorithm**.
-* 🗄️ **Cloud Integration:** Permanent data storage on **AWS RDS (MySQL)**.
-* 📊 **Live Dashboard:** Real-time data visualization using **ThingSpeak**.
+## Key Features
+* **Environmental Sensing:** Real-time temperature and humidity tracking using the DHT11 sensor.
+* **GPS-Free Geolocation:** Uses Wi-Fi triangulation via the **Google Geolocation API** to get coordinates.
+* **Edge Processing:** Offloads heavy geospatial calculations to an edge gateway to find the nearest city name using the **Haversine Algorithm**.
+* **Cloud Integration:** Permanent data storage on **AWS RDS (MySQL)**.
+* **Live Dashboard:** Real-time data visualization using **ThingSpeak**.
 
-## 🏗️ System Architecture
+## System Architecture
 
 1.  **Sensing Layer:** ESP8266/ESP32 collects DHT11 data and scans nearby Wi-Fi SSIDs.
 2.  **Edge Layer:** A local processor receives coordinates, searches a dataset of **650,000+ Indian cities**, and identifies the specific location.
@@ -20,7 +20,7 @@ The system was awarded **1st Prize** in an IoT & Edge Computing Hackathon for it
 
 ![System Architecture](./IMG01_ARC.png)
 
-## 🧩 Project Workflow
+## Project Workflow
 
 1.  **Data Collection:** The ESP8266/ESP32 reads temperature and humidity.
 2.  **Geolocation:** Instead of a GPS module, the device sends nearby Wi-Fi MAC addresses to the Google Geolocation API to receive Latitude and Longitude.
@@ -28,9 +28,7 @@ The system was awarded **1st Prize** in an IoT & Edge Computing Hackathon for it
 4.  **Haversine Logic:** The Edge Gateway runs a C++ module to calculate the "Great-circle distance" and finds the closest city from the dataset.
 5.  **Data Upload:** The final packet (Temp, Humidity, Lat, Lon, City Name) is uploaded to **AWS RDS** and **ThingSpeak**.
 
----
-
-## 💻 Technologies Used
+## Technologies Used
 
 ### **Hardware**
 * **ESP8266 / ESP32** (Microcontroller with Wi-Fi)
@@ -42,8 +40,6 @@ The system was awarded **1st Prize** in an IoT & Edge Computing Hackathon for it
 * **AWS RDS (MySQL):** For structured cloud storage.
 * **ThingSpeak:** For IoT analytics and graphing.
 * **Haversine Formula:** For calculating distances between two points on a sphere.
-
----
 
 ## 📂 Code Structure
 ```text
@@ -89,9 +85,9 @@ Open the header files or the main sketch file in your editor and update the foll
 * Go to **Tools > Board** and select your specific module (ESP8266 or ESP32).
 * Select the correct **Port** and click **Upload**.
 
----
 
-## 📊 Expected Output
+
+## Expected Output
 
 * **Serial Monitor**: You will see real-time logs displaying Latitude/Longitude, Temperature/Humidity, and the identified Nearest City.
 * **ThingSpeak**: Visual live charts showing environmental trends over time.
@@ -105,9 +101,10 @@ Open the header files or the main sketch file in your editor and update the foll
 
 ---
 
-## 👤 Author
+## Author
 
 **Karthikeyan K**
 
 * University: SRM University-AP
+
 
