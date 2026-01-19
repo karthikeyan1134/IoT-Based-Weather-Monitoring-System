@@ -20,6 +20,8 @@ The system was awarded 1st Prize in an IoT & Edge Computing Hackathon for its in
 * **Edge Layer**: A local processor receives coordinates, searches a dataset of 650,000+ Indian cities, and identifies the specific location.
 * **Cloud Layer**: The processed, location-tagged data is sent to AWS for storage and ThingSpeak for the UI.
 
+![System Architecture](./IMG01_ARC.png)
+
 ## Project Workflow
 
 1. **Data Collection**: The ESP8266/ESP32 reads temperature and humidity from the DHT11.
@@ -107,3 +109,4 @@ Open the header files or the main sketch file in your editor and update the foll
 
 
 If you find this project helpful, please give it a star!
+
