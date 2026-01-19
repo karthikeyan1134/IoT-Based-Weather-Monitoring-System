@@ -1,118 +1,121 @@
-﻿# IoT-Based-Weather-Monitoring-System
+# IoT-Based Weather Monitoring System with Edge Geospatial Processing
 
-## Overview
+## 📌 Overview
+This project is a real-time **IoT Weather Monitoring System** that collects environmental data and determines its location **without a GPS module**. It uses an architecture of **IoT + Edge Computing + Cloud** to handle data efficiently.
 
-This project is a **IoT-Based-Weather-Monitoring-System** designed to collect, process, and analyze weather data in real time. It integrates sensor data with geolocation information and uploads the data to an AWS RDS database and ThingSpeak for further processing and visualization. This platform is part of a larger system aimed at forecasting weather patterns and analyzing climate trends.
+The system was awarded **1st Prize** in an IoT & Edge Computing Hackathon for its innovative GPS-free geolocation and edge-based processing design.
 
-## Features
+---
 
-<ul>
-  <li><strong>Real-Time Data Collection:</strong> Collects temperature, humidity, and geolocation data from sensors.</li>
-  <li><strong>Database Integration:</strong> Stores collected data into an AWS RDS MySQL database for persistent storage and future analysis.</li>
-  <li><strong>ThingSpeak Integration:</strong> Uploads real-time weather data to ThingSpeak for visualization and monitoring.</li>
-  <li><strong>Geolocation Services:</strong> Utilizes Google Geolocation API to obtain accurate coordinates based on nearby Wi-Fi access points.</li>
-  <li><strong>Own GPS Sensor: </strong> This program does not require any GPS sensor. It uses geolocation and a custom header file, <strong>nearest_city.h</strong>, to replace the need for a GPS sensor.</li>
-  <li><strong>Modular Design:</strong> Easily extendable and adaptable to different hardware setups and data processing needs.</li>
-</ul>
+## 🚀 Key Features
+* 🌡️ **Environmental Sensing:** Real-time temperature and humidity tracking using the DHT11 sensor.
+* 📡 **GPS-Free Geolocation:** Uses Wi-Fi triangulation via the **Google Geolocation API** to get coordinates.
+* 🧠 **Edge Processing:** Offloads heavy geospatial calculations to an edge gateway to find the nearest city name using the **Haversine Algorithm**.
+* 🗄️ **Cloud Integration:** Permanent data storage on **AWS RDS (MySQL)**.
+* 📊 **Live Dashboard:** Real-time data visualization using **ThingSpeak**.
 
-## Hardware Requirements
+---
 
-<ul>
-  <li>ESP8266 or ESP32 Microcontroller</li>
-  <li>DHT11 Temperature and Humidity Sensor</li>
-  <li>Wi-Fi Access</li>
-  <li>AWS RDS Instance (MySQL Database)</li>
-  <li>Google Cloud Account for Geolocation API</li>
-  <li>ThingSpeak Account</li>
-</ul>
+## 🏗️ System Architecture
 
-## Software Requirements
+1.  **Sensing Layer:** ESP8266/ESP32 collects DHT11 data and scans nearby Wi-Fi SSIDs.
+2.  **Edge Layer:** A local processor receives coordinates, searches a dataset of **650,000+ Indian cities**, and identifies the specific location.
+3.  **Cloud Layer:** The processed, location-tagged data is sent to AWS for storage and ThingSpeak for the UI.
 
-<ul>
-  <li>Arduino IDE</li>
-  <li>MySQL Connector for Arduino</li>
-  <li>ArduinoJson Library</li>
-  <li>ESP8266WiFi Library (or WiFi Library for ESP32)</li>
-  <li>ESP8266HTTPClient Library (or HTTPClient Library for ESP32)</li>
-</ul>
 
-## Setup Instructions
 
-<ol>
-  <li><strong>Clone the Repository:</strong>
-    <pre><code>git clone https://github.com/karthikeyan1134/IoT-Based-Weather-Monitoring-System.git
-cd IoT-Based-Weather-Monitoring-System</code></pre>
-  </li>
-  <li><strong>Configure the Project:</strong>
-    <ul>
-      <li>Open the project in Arduino IDE.</li>
-      <li>Replace the placeholders in the code with your actual credentials:
-        <ul>
-          <li>Wi-Fi SSID and Password</li>
-          <li>Google Geolocation API Key</li>
-          <li>AWS RDS MySQL database endpoint, username, and password</li>
-          <li>ThingSpeak API Key</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>Upload the Code:</strong>
-    <ul>
-      <li>Connect your ESP8266/ESP32 microcontroller to your computer.</li>
-      <li>Select the correct board and port in Arduino IDE.</li>
-      <li>Upload the code to the microcontroller.</li>
-    </ul>
-  </li>
-  <li><strong>Run the System:</strong>
-    <ul>
-      <li>Once the code is uploaded, the system will start collecting data from the DHT11 sensor.</li>
-      <li>The geolocation data will be fetched using the Google Geolocation API.</li>
-      <li>The collected data will be uploaded to the AWS RDS database and ThingSpeak for storage and visualization.</li>
-    </ul>
-  </li>
-</ol>
+[Image of IoT Edge Cloud architecture diagram]
 
-## Code Structure
 
-<ul>
-  <li><strong>geolocation.h:</strong> Handles the Wi-Fi connection and geolocation data fetching using Google Geolocation API.</li>
-  <li><strong>nearest_city.h<strong> This header file defines structures and functions for geographic computations, including finding the nearest city to a given location using the Haversine formula and CSV data.</li>
-  <li><strong>IN.csv<strong> This file includes over 6,56,678 places with their latitudes & longitudes accross all over indian (*Reference from <a href="https://www.geonames.org/">GeoNames</a>)</li>
-  <li><strong>main.c++:</strong> The main file that integrates all components, collects sensor data, and manages data uploads to the database and ThingSpeak.</li>
-  <li><strong>config.h:</strong> Contains configuration parameters like API keys, database credentials, etc. (Optional, depending on your setup).</li>
-</ul>
+---
 
-## AWS RDS Database Schema
+## 🧩 Project Workflow
 
-<ul>
-  <li><strong>Table:</strong> <code>weather</code>
-    <ul>
-      <li><code>device_id:</code> VARCHAR, ID of the device collecting data</li>
-      <li><code>temperature:</code> FLOAT, temperature reading</li>
-      <li><code>humidity:</code> FLOAT, humidity reading</li>
-      <li><code>latitude:</code> FLOAT, latitude of the data point</li>
-      <li><code>longitude:</code> FLOAT, longitude of the data point</li>
-      <li><code>nearest_place:</code> VARCHAR, nearest place of the data point</li>
-      <li><code>timestamp:</code> TIMESTAMP, the time the data was recorded</li>
-    </ul>
-  </li>
-</ul>
+1.  **Data Collection:** The ESP8266/ESP32 reads temperature and humidity.
+2.  **Geolocation:** Instead of a GPS module, the device sends nearby Wi-Fi MAC addresses to the Google Geolocation API to receive Latitude and Longitude.
+3.  **Edge Computation:** Because the 650K+ city dataset (IN.csv) is too large for a microcontroller's memory, the coordinates are sent to an **Edge Gateway**.
+4.  **Haversine Logic:** The Edge Gateway runs a C++ module to calculate the "Great-circle distance" and finds the closest city from the dataset.
+5.  **Data Upload:** The final packet (Temp, Humidity, Lat, Lon, City Name) is uploaded to **AWS RDS** and **ThingSpeak**.
 
-## Future Enhancements
+---
 
-<ul>
-  <li>Integration of additional sensors (e.g., wind speed, pressure).</li>
-  <li>Implementation of predictive analytics and weather forecasting models.</li>
-  <li>Development of a web-based dashboard for real-time monitoring and data visualization.</li>
-  <li>Expansion of the system to support multiple devices and locations.</li>
-</ul>
+## 💻 Technologies Used
 
-<!--
-## Contributing
+### **Hardware**
+* **ESP8266 / ESP32** (Microcontroller with Wi-Fi)
+* **DHT11** (Temperature & Humidity Sensor)
 
-Contributions are welcome! Please fork this repository and submit a pull request to contribute to the project.
+### **Software & Services**
+* **C++ / Arduino IDE:** For firmware and edge logic.
+* **Google Geolocation API:** For location services.
+* **AWS RDS (MySQL):** For structured cloud storage.
+* **ThingSpeak:** For IoT analytics and graphing.
+* **Haversine Formula:** For calculating distances between two points on a sphere.
 
-## License
+---
 
-This project is licensed under the In License - see the <a href="LICENSE">LICENSE</a> file for details.
--->
+## 📂 Code Structure
+```text
+├── main.ino             # Main Arduino sketch for ESP8266/ESP32
+├── geolocation.h        # Logic for Google API communication
+├── nearest_city.cpp     # Edge module for city mapping (Haversine)
+├── IN.csv               # Dataset of 650K+ Indian cities
+└── README.md            # Project documentation
+```
+
+# ⚙️ Setup Instructions
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/karthikeyan1134/IoT-Based-Weather-Monitoring-System.git
+cd IoT-Based-Weather-Monitoring-System
+```
+
+## 2. Configure API Keys
+
+Open the header files or the main sketch file in your editor and update the following variables:
+
+* **Wi-Fi Credentials**: `SSID` and `Password`
+* **Google Geolocation API Key**: Obtain from Google Cloud Console.
+* **AWS RDS**: Endpoint URL, Username, and Password.
+* **ThingSpeak**: Your specific Write API Key.
+
+## 3. Hardware Connections
+
+* **VCC**: Connect to 3.3V
+* **GND**: Connect to Ground
+* **Data Pin**: Connect to a GPIO pin (e.g., D2 or GPIO4)
+
+## 4. Run the Edge Module
+
+* Ensure the `IN.csv` file is placed in the same directory as your edge processor script.
+* Start the edge module on your local machine or gateway to listen for incoming coordinates from the ESP device.
+
+## 5. Upload Firmware
+
+* Open the project in Arduino IDE.
+* Go to **Tools > Board** and select your specific module (ESP8266 or ESP32).
+* Select the correct **Port** and click **Upload**.
+
+---
+
+## 📊 Expected Output
+
+* **Serial Monitor**: You will see real-time logs displaying Latitude/Longitude, Temperature/Humidity, and the identified Nearest City.
+* **ThingSpeak**: Visual live charts showing environmental trends over time.
+* **AWS RDS**: Your MySQL database will be populated with rows containing location-tagged weather records for long-term storage.
+
+---
+
+## 🏆 Achievement
+
+🥇 **1st Prize Winner** at the IoT & Edge Computing Hackathon. This project was recognized for its unique ability to overcome the memory limitations of microcontrollers by offloading heavy geospatial calculations to the Edge, and for providing accurate location data without the need for expensive or indoor-limited GPS hardware.
+
+---
+
+## 👤 Author
+
+**Karthikeyan K**
+
+* University: SRM University-AP
