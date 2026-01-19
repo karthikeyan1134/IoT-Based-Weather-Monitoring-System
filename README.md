@@ -5,8 +5,6 @@ This project is a real-time **IoT Weather Monitoring System** that collects envi
 
 The system was awarded **1st Prize** in an IoT & Edge Computing Hackathon for its innovative GPS-free geolocation and edge-based processing design.
 
----
-
 ## 🚀 Key Features
 * 🌡️ **Environmental Sensing:** Real-time temperature and humidity tracking using the DHT11 sensor.
 * 📡 **GPS-Free Geolocation:** Uses Wi-Fi triangulation via the **Google Geolocation API** to get coordinates.
@@ -14,20 +12,13 @@ The system was awarded **1st Prize** in an IoT & Edge Computing Hackathon for it
 * 🗄️ **Cloud Integration:** Permanent data storage on **AWS RDS (MySQL)**.
 * 📊 **Live Dashboard:** Real-time data visualization using **ThingSpeak**.
 
----
-
 ## 🏗️ System Architecture
 
 1.  **Sensing Layer:** ESP8266/ESP32 collects DHT11 data and scans nearby Wi-Fi SSIDs.
 2.  **Edge Layer:** A local processor receives coordinates, searches a dataset of **650,000+ Indian cities**, and identifies the specific location.
 3.  **Cloud Layer:** The processed, location-tagged data is sent to AWS for storage and ThingSpeak for the UI.
 
-
-
-[Image of IoT Edge Cloud architecture diagram]
-
-
----
+![System Architecture](./IMG01_ARC.png)
 
 ## 🧩 Project Workflow
 
@@ -119,3 +110,4 @@ Open the header files or the main sketch file in your editor and update the foll
 **Karthikeyan K**
 
 * University: SRM University-AP
+
