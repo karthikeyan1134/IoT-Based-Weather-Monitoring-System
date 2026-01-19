@@ -99,12 +99,11 @@ Open the header files or the main sketch file in your editor and update the foll
 
 🥇 **1st Prize Winner** at the IoT & Edge Computing Hackathon. This project was recognized for its unique ability to overcome the memory limitations of microcontrollers by offloading heavy geospatial calculations to the Edge, and for providing accurate location data without the need for expensive or indoor-limited GPS hardware.
 
----
-
 ## Author
 
 **Karthikeyan K**
 
 * University: SRM University-AP
+
 
 
